@@ -1,0 +1,29 @@
+import random
+
+for _ in range(50):  # agora posso gerar 100 CPFs automáticamente e se vc mudar ele retorna também
+    com_nove_digitos = ''
+    for i in range(9):
+        com_nove_digitos += str(random.randint(0, 9))  # gera um CPF aleatóriamente
+
+    contador1_regressivo = 10
+
+    resultado1_digito = 0
+    for digito in com_nove_digitos:
+        resultado1_digito += int(digito) * contador1_regressivo 
+        contador1_regressivo -= 1
+    digito1 = (resultado1_digito * 10) % 11
+    digito1 = digito1 if digito1 <= 9 else 0
+
+    com_dez_digitos = com_nove_digitos + str(digito1)
+    contador2_regressivo = 11
+
+    resultado2_digito = 0
+    for digito in com_dez_digitos:
+        resultado2_digito += int(digito) * contador2_regressivo  # retorna a multiplicação e da soma
+        contador2_regressivo -= 1
+    digito2 = (resultado2_digito * 10) % 11
+    digito2 = digito2 if digito2 <= 9 else 0
+
+    cpf_gerado_pelo_calculo = f'{com_nove_digitos}{digito1}{digito2}'
+
+    print(cpf_gerado_pelo_calculo)
